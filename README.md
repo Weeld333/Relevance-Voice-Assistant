@@ -30,3 +30,7 @@ Hello everyone, this is Relevance, your personal voice assistant. Look at my fea
 - email
 
 Modules marked with an asterick require pip installation.
+
+#NOTE
+Where it says 'your-email@org.com', 'your-password', 'email@org.com' and 'name'/'name2', you put your values in there. Do not copy otherwise there will be an Error.
+Where it says 'email in ans' you can put as many as you want.
