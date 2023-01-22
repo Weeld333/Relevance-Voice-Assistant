@@ -182,7 +182,7 @@ def run():
             time.sleep(5)
 
         elif 'who are you' or 'who made you' in ans:
-            speak('I am relevance, your personal assistant, made by the relevance lord, Az Athar.')
+            speak('I am relevance, your personal assistant, made by the relevance lord, Weeld333.')
 
         elif 'shutdown' or 'shut down' in ans:
             speak('Goodbye. shutting down...')
