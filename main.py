@@ -49,14 +49,14 @@ def take_command():
 
     try:
         print("Recognizing....")
-        query = r.recognize_google(audio, language='en-gb')
+        ans = r.recognize_google(audio, language='en-gb')
         print(f"User said : {query}\n")
 
     except Exception:
         speak("Sorry Sir, didn't catch that.")
         print("Say that again please...")
-        return "None"
-    return query
+        raise SyntaxError('Request not in defined function: run()')
+    return ans
 
 def run():
     run = True
@@ -136,7 +136,7 @@ def run():
             joke = pyjokes.get_joke(language='en', category='neutral')
             speak(joke)
 
-        elif 'song' or 'music' in ans:
+        elif 'song' in ans:
             speak('ok, playing music')
             time.sleep(1)
             music_dir = "C:/Users/hinas/Music"
@@ -155,18 +155,19 @@ def run():
                     speak('What should I say?')
                     content = take_command()
                     sendEmail(to=to, content=content)
-                except Exception as e:
-                    print(e)
+                except Exception:
                     speak('Sorry I could not send')
+                    raise ConnectionError('Could not find email in SMTP server: office365')
+                  
             elif 'name2' in send_to:
                 try:
                     to = 'email@org.com'
                     speak('What should I say?')
                     content = take_command()
                     sendEmail(to=to, content=content)
-                except Exception as e:
-                    print(e)
+                except Exception:
                     speak('Could not send. Sorry')
+                    raise ConnectionError('Could not find email in SMTP server: office365')
 
         elif 'current location' in ans:
             speak(gmapFinder.getCurrentLocation())
@@ -193,7 +194,7 @@ def run():
 
         else:
             speak('I did not understand. Try again.')
-            continue
+            raise SyntaxError('Request not in defined function: run()')
 
 if __name__ == "__main__":
     speak("Hello, I'm Relevance")
