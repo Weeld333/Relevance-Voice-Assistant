@@ -11,6 +11,7 @@ import pyjokes
 import time
 import random
 from email.mime import audio
+from errors import VAFunction404
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -55,7 +56,7 @@ def take_command():
     except Exception:
         speak("Sorry Sir, didn't catch that.")
         print("Say that again please...")
-        raise SyntaxError('Request not in defined function: run()')
+        raise VAFunction404('Request not in defined function: run()')
     return ans
 
 def run():
@@ -194,7 +195,7 @@ def run():
 
         else:
             speak('I did not understand. Try again.')
-            raise SyntaxError('Request not in defined function: run()')
+            raise VAFunction404('Request not in defined function: run()')
 
 if __name__ == "__main__":
     speak("Hello, I'm Relevance")
